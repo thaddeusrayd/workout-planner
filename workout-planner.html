@@ -6,7 +6,7 @@
 <body>
     <h1>Plan workout here</h1>
     <div>
-        <form>
+        <form id="input-workout">
             <input type="text" id="workout" name="movement" size=50 placeholder="input movement and sets x reps" required>
             <input type="submit" id="submit" name="submit" value="Add to workout">
         </form>
@@ -15,7 +15,26 @@
     <ul id="workout-list"></ul>
     </div>
     <script>
+        const form = document.getElementById("input-workout");
+        const workout = document.getElementById("workout");
+        const workoutList = document.querySelector('#workout-list');
         
+        // const saySomethingImGivingUpOnYou = function(event) {
+        //     console.log(workout.value);
+        //     event.preventDefault();
+        // }
+
+        form.onsubmit = addWorkoutItem;
+
+        function addWorkoutItem(event) {
+            event.preventDefault();
+            const workoutItem = document.createElement('li');
+            workoutItem.textContent = workout.value;
+            workoutList.appendChild(workoutItem);
+            workout.value = "";
+            workout.focus();
+            return workoutItem;
+        }
     </script>
     </body>
 </html>
